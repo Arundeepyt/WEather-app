@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main class="container">
+        <h1>🌞Weather App🌦️</h1>
+
+        <form class="weatherForm">
+            <label for="cityInput">Enter City:</label>
+            <input type="text" id="cityInput" class="cityInput" name="city" placeholder="e.g. New York" required>
+            <button type="submit">Get Weather</button>
+        </form>
+
+        <div class="divider">or</div>
+
+        <button id="getLocationBtn" class="locationBtn">Use My Current Location</button>
+
+        <div class="card hidden">
+            <h2 id="cityName"></h2>
+            <p id="temperature"></p>
+            <p id="description"></p>
+        </div>
+    </main>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
