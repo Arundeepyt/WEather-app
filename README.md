@@ -14,5 +14,4 @@ Glassmorphism card design with soft gradients
 Live weather fetching & location-based data
 
 
-This project reflects my passion for front-end development, eye for design
-https://arundeepyt.github.io/WEather-app/
+This project reflects my passion for front-end development, 
