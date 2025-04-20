@@ -15,3 +15,6 @@ Live weather fetching & location-based data
 
 
 This project reflects my passion for front-end development, 
+
+
+Future updates - more days weather information 😁
