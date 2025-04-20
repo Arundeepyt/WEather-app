@@ -77,7 +77,7 @@ function showError(message) {
 
 function getWeatherEmoji(condition) {
   switch (condition) {
-    case 'Clear': return '☀';
+    case 'Clear': return '🔆';
     case 'Clouds': return '☁';
     case 'Rain': return '🌧';
     case 'Drizzle': return '🌦';
