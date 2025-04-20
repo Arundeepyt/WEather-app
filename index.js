@@ -6,7 +6,8 @@ const temperature = document.querySelector('#temperature');
 const description = document.querySelector('#description');
 const locationBtn = document.querySelector('#getLocationBtn');
 
-const apiKey = '7f4dfa07c7f10eca09a13b20528d8cd3';
+// Replace with your actual WeatherAPI key
+const apiKey = 'YOUR_API_KEY';
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -34,8 +35,9 @@ locationBtn.addEventListener('click', () => {
 
 async function getWeatherByCity(city) {
     try {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},IN&appid=${apiKey}&units=metric`);
-        if (!response.ok) { throw new Error("City not found"); }
+        const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`);
+        if (!response.ok) throw new Error("City not found");
+
         const data = await response.json();
         updateWeatherCard(data);
     } catch (error) {
@@ -45,8 +47,9 @@ async function getWeatherByCity(city) {
 
 async function getWeatherByCoords(lat, lon) {
     try {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
-        if (!response.ok) { throw new Error("Location not found"); }
+        const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`);
+        if (!response.ok) throw new Error("Location not found");
+
         const data = await response.json();
         updateWeatherCard(data);
     } catch (error) {
@@ -55,11 +58,11 @@ async function getWeatherByCoords(lat, lon) {
 }
 
 function updateWeatherCard(data) {
-    const weatherMain = data.weather[0].main;
+    const weatherMain = data.current.condition.text;
     const emoji = getWeatherEmoji(weatherMain);
-    cityName.textContent = `Weather in ${data.name}, ${data.sys.country}`;
-    temperature.textContent = `Temperature: ${data.main.temp}°C ${emoji}`;
-    description.textContent = `Condition: ${data.weather[0].description}`;
+    cityName.textContent = `Weather in ${data.location.name}, ${data.location.country}`;
+    temperature.textContent = `Temperature: ${data.current.temp_c}°C ${emoji}`;
+    description.textContent = `Condition: ${weatherMain}`;
     card.classList.remove('hidden');
 }
 
@@ -71,19 +74,15 @@ function showError(message) {
 }
 
 function getWeatherEmoji(condition) {
-    switch (condition) {
-        case 'Clear': return '☀';
-        case 'Clouds': return '☁';
-        case 'Rain': return '🌧';
-        case 'Drizzle': return '🌦';
-        case 'Thunderstorm': return '⛈';
-        case 'Snow': return '❄';
-        case 'Mist':
-        case 'Fog':
-        case 'Haze': return '🌫';
-        case 'Smoke': return '🚬';
-        case 'Dust':
-        case 'Sand': return '🌪';
-        default: return '🌈';
-    }
+    condition = condition.toLowerCase();
+    if (condition.includes('clear')) return '☀';
+    if (condition.includes('cloud')) return '☁';
+    if (condition.includes('rain')) return '🌧';
+    if (condition.includes('drizzle')) return '🌦';
+    if (condition.includes('thunder')) return '⛈';
+    if (condition.includes('snow')) return '❄';
+    if (condition.includes('mist') || condition.includes('fog') || condition.includes('haze')) return '🌫';
+    if (condition.includes('smoke')) return '🚬';
+    if (condition.includes('dust') || condition.includes('sand')) return '🌪';
+    return '🌈';
 }
