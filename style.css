@@ -1,158 +1,159 @@
-/* Reset and base */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap');
+
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to top right, #ff7b00, #ff003c, #ff007f, #ff5c8d, #0072ff, #00c6ff);
-    background-size: 600% 600%;
-    animation: gradientBG 15s ease infinite;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    /* Animated Mesh Gradient Background */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
+    color: #fff;
     padding: 20px;
-    color: #333;
-    overflow: hidden;
 }
 
-/* Weather card container */
 .container {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 2.5rem;
-    border-radius: 1.5rem;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 40px;
     width: 100%;
     max-width: 420px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
     text-align: center;
-    animation: slideUp 0.8s ease-out;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: transform 0.3s ease;
 }
 
-.container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+h1 {
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    letter-spacing: -0.5px;
 }
 
-/* Input and button styles */
-input[type="text"] {
-    width: 100%;
-    padding: 12px 15px;
-    border: none;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    font-size: 1rem;
-    background: rgba(255, 255, 255, 0.7);
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: background 0.3s ease, box-shadow 0.3s ease;
+/* Form & Input Styling */
+.weatherForm {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-input[type="text"]:focus {
+label {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    text-align: left;
+    margin-left: 5px;
+}
+
+.cityInput {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 14px;
+    color: white;
     outline: none;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.cityInput::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.cityInput:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #fff;
 }
 
 button {
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(to right, #00c6ff, #0072ff);
+    background: #fff;
+    color: #764ba2;
     border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    color: white;
-    font-weight: bold;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 600;
     cursor: pointer;
-    transition: transform 0.2s, background 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 0 10px rgba(0, 114, 255, 0.7), 0 0 20px rgba(0, 114, 255, 0.7), 0 0 30px rgba(0, 114, 255, 0.7);
+    transition: transform 0.2s active, opacity 0.3s ease;
+    margin-top: 10px;
 }
 
 button:hover {
     transform: translateY(-2px);
-    background: linear-gradient(to right, #0072ff, #00c6ff); /* Reverse gradient on hover */
-    box-shadow: 0 0 30px rgba(0, 114, 255, 0.9), 0 0 60px rgba(0, 114, 255, 0.9), 0 0 90px rgba(0, 114, 255, 0.9);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 button:active {
-    background: linear-gradient(to right, #ff007f, #ff4d4d); /* Neon pink/red gradient on click */
-    box-shadow: 0 0 20px rgba(255, 0, 127, 1), 0 0 40px rgba(255, 0, 127, 1), 0 0 60px rgba(255, 0, 127, 1);
-    text-shadow: 0 0 5px rgba(255, 0, 127, 1), 0 0 10px rgba(255, 0, 127, 1);
+    transform: translateY(0);
 }
 
-/* Weather display card */
+/* Divider Styling */
+.divider {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    opacity: 0.5;
+}
+
+.divider::before, .divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 0 10px;
+}
+
+/* Location Button Variant */
+.locationBtn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    width: 100%;
+}
+
+.locationBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Result Card */
 .card {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    border-radius: 1rem;
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    transition: all 0.5s ease-in-out;
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 0.6s ease-out;
 }
 
-/* Hidden class for showing/hiding elements */
+.card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+#temperature {
+    font-size: 3rem;
+    font-weight: 300;
+    margin: 10px 0;
+}
+
+#description {
+    text-transform: capitalize;
+    font-style: italic;
+    opacity: 0.9;
+}
+
 .hidden {
     display: none;
 }
 
-/* Emoji style */
-.weatherEmoji {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    animation: fadeIn 1s ease;
-    transition: transform 0.5s;
-}
-
-.weatherEmoji:hover {
-    transform: scale(1.2) rotate(5deg);
-}
-
-/* Fade and slide animation */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(30px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-/* Smooth transition for changes in button, input, and container */
-input[type="text"], button {
-    transition: all 0.3s ease;
-}
-
-.container:hover, button:active {
-    transition: all 0.4s ease-in-out;
-}
-
-/* Dynamic background gradient animation */
-@keyframes gradientBG {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
