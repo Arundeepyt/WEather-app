@@ -3,30 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
+    <title>Weather Pro 2026</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <main class="container">
-        <h1>🌞 Weather App 🌦️</h1>
+        <h1>✨ Weather Pro</h1>
 
         <form class="weatherForm">
-            <label for="cityInput">Enter City:</label>
-            <input type="text" id="cityInput" class="cityInput" name="city" placeholder="e.g. New York" required>
-            <button type="submit" id="submitBtn">Get Weather</button>
+            <input type="text" id="cityInput" class="cityInput" placeholder="Enter City (e.g. Tokyo)" required>
+            <button type="submit">Search</button>
         </form>
 
-        <div class="divider">or</div>
-
-        <button id="getLocationBtn" class="locationBtn">Use My Current Location</button>
+        <button id="getLocationBtn" class="locationBtn">📍 Use My Location</button>
 
         <div class="card hidden">
-            <h2 id="cityName"></h2>
-            <p id="temperature"></p>
-            <p id="description"></p>
+            <div class="current-weather">
+                <h2 id="cityName"></h2>
+                <h1 id="temperature"></h1>
+                <p id="description" class="badge"></p>
+            </div>
+
+            <div class="forecast-section">
+                <p class="forecast-title">5-Day Forecast</p>
+                <div id="forecastContainer" class="forecast-grid">
+                    </div>
+            </div>
         </div>
     </main>
-    
+
     <script src="index.js"></script>
 </body>
 </html>
