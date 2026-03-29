@@ -1,3 +1,4 @@
+/* Modern Weather App 2026 - Full Stylesheet */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap');
 
 * {
@@ -12,35 +13,44 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Animated Mesh Gradient Background */
+    /* Default Purple/Deep Blue Gradient */
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     background-attachment: fixed;
     color: #fff;
     padding: 20px;
+    transition: background 1.2s ease-in-out; /* Smooth transition for weather changes */
 }
 
+/* --- Dynamic Weather States --- */
+body.sunny { background: linear-gradient(135deg, #FF9966 0%, #FF5E62 100%); }
+body.cloudy { background: linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%); }
+body.rainy { background: linear-gradient(135deg, #203a43 0%, #2c5364 100%); }
+body.stormy { background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); }
+body.snowy { background: linear-gradient(135deg, #83a4d4 0%, #b6fbff 100%); }
+
+/* --- Main Container --- */
 .container {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 32px;
     padding: 40px;
     width: 100%;
-    max-width: 420px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
     text-align: center;
-    transition: transform 0.3s ease;
 }
 
 h1 {
     font-weight: 600;
-    font-size: 1.8rem;
-    margin-bottom: 25px;
+    font-size: 1.6rem;
+    margin-bottom: 30px;
     letter-spacing: -0.5px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-/* Form & Input Styling */
+/* --- Form Elements --- */
 .weatherForm {
     display: flex;
     flex-direction: column;
@@ -48,17 +58,19 @@ h1 {
 }
 
 label {
-    font-size: 0.85rem;
-    opacity: 0.8;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.7;
     text-align: left;
-    margin-left: 5px;
+    margin-left: 8px;
 }
 
 .cityInput {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 12px;
-    padding: 14px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 16px;
     color: white;
     outline: none;
     font-size: 1rem;
@@ -70,38 +82,44 @@ label {
 }
 
 .cityInput:focus {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: #fff;
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
 button {
-    background: #fff;
-    color: #764ba2;
+    background: #ffffff;
+    color: #1a1a1a;
     border: none;
-    padding: 14px;
-    border-radius: 12px;
+    padding: 16px;
+    border-radius: 16px;
     font-weight: 600;
+    font-size: 0.95rem;
     cursor: pointer;
-    transition: transform 0.2s active, opacity 0.3s ease;
-    margin-top: 10px;
+    transition: all 0.2s ease;
+    margin-top: 8px;
 }
 
 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    background: #f8f9fa;
 }
 
 button:active {
-    transform: translateY(0);
+    transform: translateY(-1px);
 }
 
-/* Divider Styling */
+/* --- UI Divider --- */
 .divider {
-    margin: 20px 0;
+    margin: 25px 0;
     display: flex;
     align-items: center;
-    font-size: 0.8rem;
-    opacity: 0.5;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    opacity: 0.4;
+    letter-spacing: 1px;
 }
 
 .divider::before, .divider::after {
@@ -109,51 +127,66 @@ button:active {
     flex: 1;
     height: 1px;
     background: rgba(255, 255, 255, 0.3);
-    margin: 0 10px;
+    margin: 0 15px;
 }
 
-/* Location Button Variant */
+/* --- Location Button Secondary Style --- */
 .locationBtn {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
     width: 100%;
 }
 
 .locationBtn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
-/* Result Card */
+/* --- Result Weather Card --- */
 .card {
-    margin-top: 30px;
-    padding-top: 25px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    animation: fadeIn 0.6s ease-out;
+    margin-top: 35px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.card h2 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+#cityName {
+    font-size: 1.1rem;
+    font-weight: 400;
+    opacity: 0.9;
 }
 
 #temperature {
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 300;
-    margin: 10px 0;
+    margin: 15px 0;
+    letter-spacing: -2px;
 }
 
 #description {
     text-transform: capitalize;
-    font-style: italic;
-    opacity: 0.9;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    background: rgba(255, 255, 255, 0.15);
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 50px;
 }
 
 .hidden {
     display: none;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+/* --- Animations --- */
+@keyframes slideUpFade {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
 }
